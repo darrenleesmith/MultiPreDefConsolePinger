@@ -58,7 +58,8 @@ namespace MultiPreDefConsolePinger
             DrawBox(100, 5);
         }
         static void myNewMethod(string userInput, int y)
-        { Console.SetCursorPosition(0, y);
+        {
+            Console.SetCursorPosition(0, y);
             using (var ping = new Ping()) try
                 {
                     var reply = ping.Send(userInput);
