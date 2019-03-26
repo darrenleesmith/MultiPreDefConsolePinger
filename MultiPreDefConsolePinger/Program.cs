@@ -8,9 +8,7 @@ namespace MultiPreDefConsolePinger
     {
         static void Main()
         {
-            Console.Title = "Predefined Console Pinger";
-            Console.WindowHeight = 18;
-            Console.WindowWidth = 101;
+            start();
 
             string userInputOne;
             string userInputTwo;
@@ -31,6 +29,12 @@ namespace MultiPreDefConsolePinger
                 myNewMethod(userInputTwo, 6);
                 myNewMethod(userInputThree, 12);
             }
+        }
+        static void start()
+        {
+            Console.Title = "Predefined Console Pinger";
+            Console.WindowHeight = 18;
+            Console.WindowWidth = 101;
         }
         static void DrawLine(int w, char ends, char mids)
         {
@@ -67,17 +71,20 @@ namespace MultiPreDefConsolePinger
                     {
                         drawColourBox(ConsoleColor.Green);
                         Console.SetCursorPosition(2, y + 2);
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Status: " + reply.Status + " User Input: {0} ", userInput + " IP Address: " + reply.Address + " Time: " + reply.RoundtripTime.ToString() + "ms");
                     }
                     else
                     {
                         drawColourBox(ConsoleColor.Yellow); Console.SetCursorPosition(2, y + 2);
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Status: Failed User Input: {0}", userInput);
                     }
                 }
                 catch
                 {
                     drawColourBox(ConsoleColor.Red); Console.SetCursorPosition(2, y + 2);
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Status: ERROR User Input: {0} Check Input and try again.", userInput);
                 }
         }
