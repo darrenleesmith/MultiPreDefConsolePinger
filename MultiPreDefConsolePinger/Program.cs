@@ -27,77 +27,9 @@ namespace MultiPreDefConsolePinger
             while (true)
             {
                 loopOne();
-                using (var ping = new Ping())
-                    try
-                    {
-                        var reply = ping.Send(userInputOne);
-                        if (reply.Status == IPStatus.Success)
-                        {
-                            drawColourBox(ConsoleColor.Green);
-                            Console.SetCursorPosition(2, 2);
-                            Console.WriteLine("Status: " + reply.Status + " User Input: {0} ", userInputOne + " IP Address: " + reply.Address + " Time: " + reply.RoundtripTime.ToString() + "ms");
-                        }
-                        else
-                        {
-                            drawColourBox(ConsoleColor.Yellow);
-                            Console.SetCursorPosition(2, 2);
-                            Console.WriteLine("Status: Failed User Input: {0}", userInputOne);
-                        }
-                    }
-                    catch
-                    {
-                        drawColourBox(ConsoleColor.Red);
-                        Console.SetCursorPosition(2, 2);
-                        Console.WriteLine("Status: ERROR User Input: {0} Check Input and try again.", userInputOne);
-                    }
-                Console.SetCursorPosition(0, 6);
-                using (var ping = new Ping())
-                    try
-                    {
-                        var reply = ping.Send(userInputTwo);
-                        if (reply.Status == IPStatus.Success)
-                        {
-                            drawColourBox(ConsoleColor.Green);
-                            Console.SetCursorPosition(2, 8);
-                            Console.WriteLine("Status: " + reply.Status + " User Input: {0} ", userInputTwo + " IP Address: " + reply.Address + " Time: " + reply.RoundtripTime.ToString() + "ms");
-                        }
-                        else
-                        {
-                            drawColourBox(ConsoleColor.Yellow);
-                            Console.SetCursorPosition(2, 8);
-                            Console.WriteLine("Status: Failed User Input: {0}", userInputTwo);
-                        }
-                    }
-                    catch
-                    {
-                        drawColourBox(ConsoleColor.Red);
-                        Console.SetCursorPosition(2, 8);
-                        Console.WriteLine("Status: ERROR User Input: {0} Check Input and try again.", userInputTwo);
-                    }
-                Console.SetCursorPosition(0, 12);
-                using (var ping = new Ping())
-                    try
-                    {
-                        var reply = ping.Send(userInputThree);
-                        if (reply.Status == IPStatus.Success)
-                        {
-                            drawColourBox(ConsoleColor.Green);
-                            Console.SetCursorPosition(2, 14);
-                            Console.WriteLine("Status: " + reply.Status + " User Input: {0} ", userInputThree + " IP Address: " + reply.Address + " Time: " + reply.RoundtripTime.ToString() + "ms");
-                        }
-                        else
-                        {
-                            drawColourBox(ConsoleColor.Yellow);
-                            Console.SetCursorPosition(2, 14);
-                            Console.WriteLine("Status: Failed User Input: {0}", userInputThree);
-                        }
-                    }
-                    catch
-                    {
-                        drawColourBox(ConsoleColor.Red);
-                        Console.SetCursorPosition(2, 14);
-                        Console.WriteLine("Status: ERROR User Input: {0} Check Input and try again.", userInputThree);
-                    }
+                myNewMethod(userInputOne, 0);
+                myNewMethod(userInputTwo, 6);
+                myNewMethod(userInputThree, 12);
             }
         }
         static void DrawLine(int w, char ends, char mids)
@@ -124,6 +56,29 @@ namespace MultiPreDefConsolePinger
         {
             Console.ForegroundColor = color;
             DrawBox(100, 5);
+        }
+        static void myNewMethod(string userInput, int y)
+        { Console.SetCursorPosition(0, y);
+            using (var ping = new Ping()) try
+                {
+                    var reply = ping.Send(userInput);
+                    if (reply.Status == IPStatus.Success)
+                    {
+                        drawColourBox(ConsoleColor.Green);
+                        Console.SetCursorPosition(2, y + 2);
+                        Console.WriteLine("Status: " + reply.Status + " User Input: {0} ", userInput + " IP Address: " + reply.Address + " Time: " + reply.RoundtripTime.ToString() + "ms");
+                    }
+                    else
+                    {
+                        drawColourBox(ConsoleColor.Yellow); Console.SetCursorPosition(2, y + 2);
+                        Console.WriteLine("Status: Failed User Input: {0}", userInput);
+                    }
+                }
+                catch
+                {
+                    drawColourBox(ConsoleColor.Red); Console.SetCursorPosition(2, y + 2);
+                    Console.WriteLine("Status: ERROR User Input: {0} Check Input and try again.", userInput);
+                }
         }
     }
 }
